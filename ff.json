@@ -1,0 +1,67 @@
+[{
+    "type": "ADVANCED_SEARCH",
+    "properties": {
+      "tabs": [
+        {
+          "type": 'LINK',
+          "properties": {
+            path: 'http://google.com',
+            content: 'SEARCH',
+          },
+          attributes: { class: 'is-active' },
+        },
+        {
+          type: 'LINK',
+          properties: {
+            path: 'http://facebook.com',
+            content: 'ADVANCED SEARCH',
+          },
+        },
+        {
+          type: 'LINK',
+          properties: {
+            path: 'http://facebook.com',
+            content: 'EXAMPLE SEARCH',
+          },
+        },
+      ],
+      search: {
+        title: 'Search',
+        placeholder: 'Enter search term here',
+        icon: null,
+      },
+    },
+  }, {
+    "type": 'MY_TABLE',
+    "properties": {
+      "tabs": [
+        {
+          "type": 'LINK',
+          "properties": {
+            path: 'http://google.com',
+            content: 'SEARCH',
+          },
+          attributes: { class: 'is-active' },
+        },
+        {
+          type: 'LINK',
+          properties: {
+            path: 'http://facebook.com',
+            content: 'ADVANCED SEARCH',
+          },
+        },
+        {
+          type: 'LINK',
+          properties: {
+            path: 'http://facebook.com',
+            content: 'EXAMPLE SEARCH',
+          },
+        },
+      ],
+      search: {
+        title: 'Search',
+        placeholder: 'Enter search term here',
+        icon: null,
+      },
+    },
+  }]

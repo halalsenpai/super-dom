@@ -1,0 +1,15 @@
+serialize
+functions/events not in json
+dynamically loading components or data
+inject javascript script
+references of events/functions from json thats loaded into or injected from javascript
+filter/form onchange or explicitly or when you want to 
+wizards/multiple screen data is saved or not saved support
+overriding of the styling
+
+Comments://
+-Predefined json schemas support from table only data will be differents, universal styling
+-templating
+-localization support
+-translations currently being done: human readable keys to languange specific keys
+-get text lib
