@@ -372,7 +372,7 @@ var ADVANCE_SEARCH_SCHEMA = {
           path: "#",
           content: "EXAMPLE SEARCH",
         },
-        events: { click: "clickMe" },
+        events: { click: { ref: "clickMe", params: { a: 1, b: 2, c: 3 } } },
       },
     ],
     search: {
@@ -436,11 +436,19 @@ function setEvents(events, dom) {
   for (const key in events) {
     if (Object.hasOwnProperty.call(events, key)) {
       const event = events[key];
-      var eventFuncton = new Function("a", `return ${event}`);
-      console.log(eventFuncton);
-
+      console.log(event);
+      if (event.hasOwnProperty("params")) {
+        console.log("dropping true");
+        var ekeys = Object.keys(event.params).join();
+        var evalues = Object.values(event.params);
+        var eventFuncton = new Function(`${ekeys}`, `return ${event.ref}(${ekeys})`);
+        dom.addEventListener(key, () => eventFuncton(...evalues), false);
+      } else {
+        var eventFuncton = new Function("", `return ${event.ref}`);
+        dom.addEventListener(key, eventFuncton(), false);
+      }
       // https://www.w3schools.com/jsref/dom_obj_event.asp
-      dom.addEventListener(key, eventFuncton("this works"), false);
+
       // dom.setAttribute(key, event);
     }
   }
@@ -644,6 +652,14 @@ const makeAdvancedSearch = (schema) => {
                           value: "form-control searchform-input",
                         },
                         {
+                          key: "name",
+                          value: "search",
+                        },
+                        {
+                          key: "id",
+                          value: "search-id",
+                        },
+                        {
                           key: "type",
                           value: "search",
                         },
@@ -722,6 +738,7 @@ const makeAdvancedSearch = (schema) => {
                               { key: "value", value: "select-all" },
                               { key: "class", value: "filter-all" },
                               { key: "data-value", value: "select-all" },
+                              { key: "name", value: "testcheck" },
                             ],
                           },
                         ],
@@ -747,8 +764,13 @@ const makeAdvancedSearch = (schema) => {
     sections = [...sections, ...arr];
   }
   let obj = {
-    node: "div",
-    options: [{ key: "class", value: "panel search-panel" }],
+    node: "form",
+    options: [
+      { key: "class", value: "panel search-panel" },
+      { key: "id", value: "myForm" },
+      { key: "name", value: "myForm" },
+    ],
+    events: { submit: { ref: "changeMe" } },
     children: [
       {
         node: "div",
@@ -822,6 +844,11 @@ const makeAdvancedSearch = (schema) => {
         node: "div",
         options: [{ key: "class", value: "searchform-content" }],
         children: sections,
+      },
+      {
+        node: "button",
+        content: "Submit",
+        options: [{ key: "type", value: "submit" }],
       },
     ],
   };
