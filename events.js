@@ -8,16 +8,10 @@ const clickMe = (a, b, c) => {
 
 const changeMe = (e) => {
   e.preventDefault();
-  console.log(e);
-  var ed = document.getElementById("myForm");
-  console.log(ed.elements);
-
-  var data = new FormData(document.getElementById("myForm"));
+  var data = new FormData(document.getElementById("Form-1"));
   //   for a js object
   console.log(Object.fromEntries(data));
 
   //   for key value pairs
   console.log(...data);
 };
-
-// var ed = document.getElementById("myForm");

@@ -1,11 +1,21 @@
+const data = {
+  formID: "Form-1",
+  data: { email: "abdullahchaghtai@gmail.com", password: "helloworld" },
+};
+
 var FORM = [
   {
     node: "form",
     style: { href: "./random.style.css", options: { rel: "stylesheet" } },
+    events: { submit: { ref: "changeMe" } },
     options: [
       {
         key: "class",
-        value: "my-form container",
+        value: "my-form container p-4 mt-5",
+      },
+      {
+        key: "id",
+        value: "Form-1",
       },
     ],
     children: [
@@ -48,6 +58,10 @@ var FORM = [
                     key: "type",
                     value: "email",
                   },
+                  {
+                    key: "name",
+                    value: "email",
+                  },
                 ],
               },
             ],
@@ -82,6 +96,60 @@ var FORM = [
                     key: "type",
                     value: "password",
                   },
+                  {
+                    key: "name",
+                    value: "password",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            node: "div",
+            options: [{ key: "class", value: "form-check mt-2 w-100" }],
+            children: [
+              {
+                node: "input",
+                content: "This is a checkbox",
+                options: [
+                  { key: "type", value: "checkbox" },
+                  { key: "name", value: "checkbox" },
+                  { key: "value", value: "sample-checkbox" },
+                  { key: "class", value: "form-check-input" },
+                ],
+              },
+              {
+                node: "label",
+                content: "This is a checkbox",
+                options: [{ key: "class", value: "form-check-label" }],
+              },
+            ],
+          },
+          {
+            node: "div",
+            options: [{ key: "class", value: "col-12 col-md-8" }],
+            children: [
+              {
+                node: "label",
+                options: [
+                  {
+                    key: "class",
+                    value: "form-label",
+                  },
+                ],
+                content: "Select secret color",
+              },
+              {
+                node: "select",
+                options: [
+                  { key: "class", value: "form-control" },
+                  { key: "name", value: "normal-select" },
+                ],
+                children: [
+                  { node: "option", content: "Open this select menu" },
+                  { node: "option", content: "Blue" },
+                  { node: "option", content: "Red" },
+                  { node: "option", content: "Green" },
                 ],
               },
             ],
@@ -90,6 +158,7 @@ var FORM = [
             node: "div",
             options: [
               { key: "id", value: "react-select" },
+              // { key: "name", value: "react-select" },
               { key: "class", value: "w-100 container mt-3" },
             ],
             script: {
@@ -126,6 +195,20 @@ var FORM = [
                   },
                 ],
               },
+            ],
+          },
+        ],
+      },
+      {
+        node: "div",
+        options: [{ key: "class", value: "d-flex justify-content-center" }],
+        children: [
+          {
+            node: "button",
+            content: "Submit",
+            options: [
+              { key: "class", value: "btn btn-primary mt-3" },
+              { key: "type", value: "submit" },
             ],
           },
         ],
@@ -312,119 +395,6 @@ var SELECT_SCHEMA = {
   },
 };
 
-var CUSTOMTEMPLATE = [
-  IMAGE_SCHEMA,
-  {
-    node: "div",
-    content: "This is a regular node",
-    children: [IMAGE_SCHEMA],
-    options: [{ key: "class", value: "container" }],
-  },
-  LINK_SCHEMA,
-  SELECT_SCHEMA,
-];
-
-var CARD_SCHEMA = [
-  {
-    type: "CARD",
-    data: [
-      {
-        type: "IMAGE",
-        properties: {
-          path: "./img/pexels-josh-sorenson-1714208.jpg",
-        },
-        attributes: { class: "custom-image" },
-      },
-    ],
-    cardTitle: "Hello World",
-    cardText: "This is a random descrption",
-    link: {
-      type: "LINK",
-      properties: { path: "http://google.com", content: "this is a link" },
-      attributes: { class: "custom-link" },
-    },
-  },
-];
-
-var ADVANCE_SEARCH_SCHEMA = {
-  type: "ADVANCED_SEARCH",
-  // dependencies: [{ type: "script", path: "./events.js" }],
-  properties: {
-    tabs: [
-      {
-        type: "LINK",
-        properties: {
-          path: "http://google.com",
-          content: "SEARCH",
-        },
-        attributes: { class: "is-active" },
-      },
-      {
-        type: "LINK",
-        properties: {
-          path: "http://facebook.com",
-          content: "ADVANCED SEARCH",
-        },
-      },
-      {
-        type: "LINK",
-        properties: {
-          path: "#",
-          content: "EXAMPLE SEARCH",
-        },
-        events: { click: { ref: "clickMe", params: { a: 1, b: 2, c: 3 } } },
-      },
-    ],
-    search: {
-      title: "Search",
-      placeholder: "Enter search term here",
-      icon: null,
-    },
-    filters: [
-      {
-        type: "CHECKLIST",
-        title: "STATUS",
-        selectall: true,
-        options: [
-          { name: "Active", value: "active" },
-          { name: "Draft", value: "draft" },
-          { name: "Template", value: "template" },
-          { name: "Template", value: "template" },
-          { name: "Template", value: "template" },
-          { name: "Template", value: "template" },
-        ],
-      },
-      {
-        type: "CHECKLIST",
-        title: "VISIBILITY",
-        selectall: true,
-        options: [
-          { name: "Internal", value: "internal" },
-          { name: "External", value: "external" },
-        ],
-      },
-      {
-        type: "CHECKLIST",
-        title: "LANGUAGE",
-        selectall: true,
-        options: [
-          { name: "English", value: "internal" },
-          { name: "Russian", value: "external" },
-        ],
-      },
-      {
-        type: "CHECKLIST",
-        title: "Company Profile",
-        selectall: true,
-        options: [
-          { name: "Default (Demo Company HQ)", value: "internal" },
-          { name: "Demo Company(Suomi, Helsenki)", value: "external" },
-        ],
-      },
-    ],
-  },
-};
-
 function setAttrs(attrs, dom) {
   for (let j = 0; j < attrs.length; j++) {
     const attr = attrs[j];
@@ -491,6 +461,8 @@ function createElement(el) {
   return document.createElement(el);
 }
 
+// Level 1 Components
+
 const makeImg = (schema) => {
   let obj = {};
 
@@ -540,6 +512,8 @@ const makeSelect = (schema) => {
   return [obj];
 };
 
+//  Level 2 Components
+
 const makeCard = (schema) => {
   let obj = {};
   var img = makeImg(schema[0].image);
@@ -575,308 +549,9 @@ const makeCard = (schema) => {
   return [obj];
 };
 
-const makeAdvancedSearch = (schema) => {
-  var dd = null;
-  const linkArr = [];
-  var sections = [];
+// Core Functions
 
-  if (schema.properties.tabs && schema.properties.tabs.length) {
-    for (let i = 0; i < schema.properties.tabs.length; i++) {
-      const element = schema.properties.tabs[i];
-      let [link] = makeLink(element);
-
-      linkArr.push(link);
-    }
-  }
-  console.log(linkArr);
-  if (schema.properties.search) {
-    let obj = {
-      node: "div",
-      options: [
-        {
-          key: "class",
-          value: "filter-category filter-search filter-search-panel",
-        },
-        {
-          key: "data-category",
-          value: "search_words",
-        },
-      ],
-      children: [
-        {
-          node: "div",
-          options: [{ key: "class", value: "filter-category-header" }],
-          children: [
-            {
-              node: "h4",
-              content: "Search",
-              children: [
-                {
-                  node: "span",
-                  options: [
-                    {
-                      key: "class",
-                      value: "glyphicon glyphicon-triangle-bottom",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          node: "div",
-          options: [
-            {
-              key: "class",
-              value: "filter-category-selections filter-category-search-selections",
-            },
-          ],
-          children: [
-            {
-              node: "div",
-              options: [{ key: "class", value: "search-field-wrapper" }],
-              children: [
-                {
-                  node: "label",
-                  children: [
-                    {
-                      node: "span",
-                      options: [{ key: "class", value: "icon-magnifier" }],
-                    },
-                    {
-                      node: "input",
-                      options: [
-                        {
-                          key: "class",
-                          value: "form-control searchform-input",
-                        },
-                        {
-                          key: "name",
-                          value: "search",
-                        },
-                        {
-                          key: "id",
-                          value: "search-id",
-                        },
-                        {
-                          key: "type",
-                          value: "search",
-                        },
-                        {
-                          key: "placeholder",
-                          value: schema?.properties?.search?.placeholder ? schema?.properties?.search?.placeholder : "Search",
-                        },
-                      ],
-                    },
-                    {
-                      node: "span",
-                      options: [
-                        {
-                          key: "class",
-                          value: "info-button-icon icon-question fix-overflow-top info-box-fixed",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
-    sections.push(obj);
-  }
-  if (schema.properties.filters) {
-    let arr = [];
-    for (let i = 0; i < schema.properties.filters.length; i++) {
-      const el = schema.properties.filters[i];
-      switch (el.type) {
-        case "CHECKLIST":
-          const json = makeCheckList(el);
-          let obj = {
-            node: "div",
-            options: [{ key: "class", value: "filter-category filter-search-panel" }],
-            children: [
-              {
-                node: "div",
-                options: [{ key: "class", value: "filter-category-header" }],
-                children: [
-                  {
-                    node: "h4",
-                    content: el.title,
-                    children: [
-                      {
-                        node: "span",
-                        options: [
-                          {
-                            key: "class",
-                            value: "glyphicon glyphicon-triangle-bottom",
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                node: "div",
-                options: [{ key: "class", value: "filter-category-selections " }],
-                children: [
-                  {
-                    node: "div",
-                    children: [
-                      {
-                        node: "label",
-                        content: "select all",
-                        children: [
-                          {
-                            node: "input",
-                            options: [
-                              { key: "type", value: "checkbox" },
-                              { key: "value", value: "select-all" },
-                              { key: "class", value: "filter-all" },
-                              { key: "data-value", value: "select-all" },
-                              { key: "name", value: "testcheck" },
-                            ],
-                          },
-                        ],
-                      },
-                      {
-                        node: "hr",
-                      },
-                    ],
-                  },
-                  json,
-                ],
-              },
-            ],
-          };
-          arr.push(obj);
-
-          break;
-
-        default:
-          break;
-      }
-    }
-    sections = [...sections, ...arr];
-  }
-  let obj = {
-    node: "form",
-    options: [
-      { key: "class", value: "panel search-panel" },
-      { key: "id", value: "myForm" },
-      { key: "name", value: "myForm" },
-    ],
-    events: { submit: { ref: "changeMe" } },
-    children: [
-      {
-        node: "div",
-        options: [{ key: "class", value: "tabs primary" }],
-        children: [
-          {
-            node: "div",
-            options: [{ key: "class", value: "clear-all-filters clearfix" }],
-            children: [
-              {
-                node: "span",
-                options: [{ key: "class", value: "clear-all" }],
-                content: "Clear all",
-              },
-              {
-                node: "span",
-                options: [{ key: "class", value: "reset to default" }],
-                content: "Reset to default",
-              },
-            ],
-          },
-          {
-            node: "div",
-            options: [{ key: "class", value: "search-tab-categories" }],
-            children: linkArr,
-          },
-        ],
-      },
-      {
-        node: "div",
-        options: [{ key: "class", value: "saved-filters" }],
-        children: [
-          {
-            node: "div",
-            options: [{ key: "class", value: "saved-filters-header" }],
-            children: [
-              {
-                node: "div",
-                options: [
-                  {
-                    key: "class",
-                    value: "overlay-background overlay-close-no-confirmation",
-                  },
-                ],
-              },
-              {
-                node: "h4",
-                content: "Saved Searches",
-                children: [
-                  {
-                    node: "span",
-                    options: [
-                      {
-                        key: "class",
-                        value: "glyphicon glyphicon-triangle-bottom",
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                node: "a",
-                content: "save as",
-                options: [{ key: "class", value: "save-filter-button" }],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        node: "div",
-        options: [{ key: "class", value: "searchform-content" }],
-        children: sections,
-      },
-      {
-        node: "button",
-        content: "Submit",
-        options: [{ key: "type", value: "submit" }],
-      },
-    ],
-  };
-
-  if (schema.dependencies && schema.dependencies.length) {
-    for (let i = 0; i < schema.dependencies.length; i++) {
-      const element = schema.dependencies[i];
-      switch (element.type) {
-        case "script":
-          obj.script = { src: element.path, options: { type: "text/javascript" } };
-
-          break;
-
-        case "stylesheet":
-          obj.style = { href: element.path, options: { rel: "stylesheet" } };
-          break;
-
-        default:
-          break;
-      }
-    }
-  }
-
-  console.log("Object from adv search", obj);
-
-  return [obj];
-};
-
+// Renderer
 const doMagic = (container, schema) => {
   for (let i = 0; i < schema.length; i++) {
     const el = schema[i];
@@ -897,23 +572,15 @@ const doMagic = (container, schema) => {
   }
 };
 
-const makeTemplate = (container, component) => {
-  switch (component.type) {
-    case "card":
-      makeCard(container, component);
-      break;
-
-    case "navbar":
-      console.log("fell into navbar");
-      break;
-
-    case "ADVANCE_SEARCH":
-      console.log("fell into seacrh panel");
-      makeAdvancedSearch(component);
-      break;
-
-    default:
-      break;
+const pushData = (data) => {
+  const form = document.getElementById(data.formID);
+  console.log(form.elements);
+  for (const key in data.data) {
+    if (Object.hasOwnProperty.call(data.data, key)) {
+      const element = data.data[key];
+      console.log(form.elements[key]);
+      form.elements[key].value = element;
+    }
   }
 };
 
@@ -1013,11 +680,11 @@ const CHECKLIST = {
 
 // doMagic(document.body, NAVBAR);
 
-// doMagic(document.body, FORM);
+doMagic(document.body, FORM);
 
 // doMagic(document.body, MAP);
 
 // makeDom(document.body, CUSTOMTEMPLATE);
 
-const advancedSearch = makeAdvancedSearch(ADVANCE_SEARCH_SCHEMA);
-doMagic(document.body, advancedSearch);
+// doMagic(document.body, advancedSearch);
+pushData(data);

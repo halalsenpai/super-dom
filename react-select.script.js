@@ -1,7 +1,7 @@
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
 ];
 
 class App extends React.Component {
@@ -18,14 +18,10 @@ class App extends React.Component {
     return (
       <div>
         React Select
-        <Select
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={options}
-        />
+        <Select name="react-custom-select" value={selectedOption} onChange={this.handleChange} options={options} />
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.querySelector('#react-select'));
+ReactDOM.render(<App />, document.querySelector("#react-select"));
