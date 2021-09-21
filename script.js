@@ -1,6 +1,6 @@
 const data = {
   formID: "Form-1",
-  data: { email: "abdullahchaghtai@gmail.com", password: "helloworld" },
+  data: { email: "abdullah.chaghtai@mikaels.com", password: "helloworld", normalselect: "Blue", customCheckbox: "true" },
 };
 
 var FORM = [
@@ -113,8 +113,7 @@ var FORM = [
                 content: "This is a checkbox",
                 options: [
                   { key: "type", value: "checkbox" },
-                  { key: "name", value: "checkbox" },
-                  { key: "value", value: "sample-checkbox" },
+                  { key: "name", value: "customCheckbox" },
                   { key: "class", value: "form-check-input" },
                 ],
               },
@@ -143,7 +142,7 @@ var FORM = [
                 node: "select",
                 options: [
                   { key: "class", value: "form-control" },
-                  { key: "name", value: "normal-select" },
+                  { key: "name", value: "normalselect" },
                 ],
                 children: [
                   { node: "option", content: "Open this select menu" },
@@ -168,7 +167,10 @@ var FORM = [
           },
           {
             node: "div",
-            options: [{ key: "class", value: "container mt-3 w-100" }],
+            options: [
+              { key: "class", value: "container mt-3 w-100" },
+              { key: "name", value: "jquerySelect" },
+            ],
             script: {
               src: "./jquery-select.script.js",
               options: { type: "text/babel" },
@@ -578,7 +580,11 @@ const pushData = (data) => {
   for (const key in data.data) {
     if (Object.hasOwnProperty.call(data.data, key)) {
       const element = data.data[key];
-      console.log(form.elements[key]);
+
+      if (form.elements[key].type === "checkbox") {
+        form.elements[key].checked = element === "true" ? true : false;
+      }
+
       form.elements[key].value = element;
     }
   }

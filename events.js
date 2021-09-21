@@ -13,5 +13,5 @@ const changeMe = (e) => {
   console.log(Object.fromEntries(data));
 
   //   for key value pairs
-  console.log(...data);
+  // console.log(...data);
 };
